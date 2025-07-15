@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Yield Forecast</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>🌾 Crop Yield Prediction</h2>
+        
+        <form method="POST">
+            <label for="crop">Crop:</label>
+            <select name="crop" id="crop" required>
+                {% for option in crop_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="season">Season:</label>
+            <select name="season" id="season" required>
+                {% for option in season_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="state">State:</label>
+            <select name="state" id="state" required>
+                {% for option in state_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="area">Area (hectares):</label>
+            <input type="number" step="any" name="area" id="area" required>
+
+            <label for="rainfall">Annual Rainfall (mm):</label>
+            <input type="number" step="any" name="rainfall" id="rainfall" required>
+
+            <label for="fertilizer">Fertilizer Used (kg):</label>
+            <input type="number" step="any" name="fertilizer" id="fertilizer" required>
+
+            <label for="pesticide">Pesticide Used (kg):</label>
+            <input type="number" step="any" name="pesticide" id="pesticide" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <h3>🌱 Predicted Yield: {{ prediction }} tonnes/hectare</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
