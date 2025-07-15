@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 import joblib
 import pandas as pd
 import numpy as np
-import os
 
 app = Flask(__name__)
 
@@ -53,5 +52,4 @@ def index():
                            season_options=SEASON_OPTIONS,
                            state_options=STATE_OPTIONS)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# No need for app.run() when using Gunicorn or Render
